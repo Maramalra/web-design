@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voom Restaurant Menu</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+       body {
+      background-color: gray;
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+      background-repeat: no-repeat;
+    background-position: center;
+    ​ font-family: 'Lobster';
+    }
+    .navbar {
+      background-color: lightblue;
+      color: white;
+      font-weight: bold;
+    }
+
+    .container {
+      color: white;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 50px;
+      min-height: 100vh;
+      box-sizing: border-box;
+    }
+
+    .menu-section {
+      display: none;
+    }
+
+    .menu-item img {
+      width: 100px;
+      height: 100px;
+    }
+
+    header h1 {
+      margin-bottom: 20px;
+    }
+
+    header img {
+      max-width: 100%;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark">
+    <a class="navbar-brand" href="#" style="font-family: 'Lobster'">Voom Coffee Shop</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#" style="font-family: 'Lobster'">Home</a>
+        </li>
+        <li class="nav-item">
+        <li class="nav-item">
+          <a class="nav-link" href="contact.html" style="font-family: 'Lobster'">Conatct-Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="about.html" style="font-family: 'Lobster'">About.Us</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+<br/>
+  <header>
+    <h1 style="text-align: center;color: white;font-family: 'Lobster'">Welcome Voom Restaurant</h1>
+  </header>
+
+  <div class="container">
+    <!-- Menu Selection -->
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="showMenu('appetizers')" style="font-family: 'Lobster'">Appetizers</button>
+      <button class="btn btn-primary" onclick="showMenu('main-course')" style="font-family: 'Lobster'">Main Course</button>
+      <button class="btn btn-primary" onclick="showMenu('desserts')" style="font-family: 'Lobster'">Desserts</button>
+      <button class="btn btn-primary" onclick="showMenu('drinks')" style="font-family: 'Lobster'">Drinks</button>
+    </div>
+
+    <!-- Menu Sections -->
+    <div id="appetizers" class="menu-section">
+      <h2 style="font-family: 'Lobster'">Appetizers</h2>
+      <div class="menu-item" data-name="Cake" data-price="5.99">
+        <img src="ap1.png" alt="Cake">
+      </div>
+      <div class="menu-item" data-name="Cookie" data-price="7.99">
+        <img src="ap2.png" alt="Cookie">
+      </div>
+    </div>
+
+    <div id="main-course" class="menu-section">
+      <h2 style="font-family: 'Lobster'">Main Course</h2>
+      <div class="menu-item" data-name="Brown Sandwich" data-price="12.99">
+        <img src="ap3.png" alt="Brown Sandwich">
+      </div>
+      <div class="menu-item" data-name="Turkish Sandwich" data-price="15.99">
+        <img src="ma1.png" alt="Turkish Sandwich">
+      </div>
+    </div>
+
+    <div id="desserts" class="menu-section">
+      <h2 style="font-family: 'Lobster'">Desserts</h2>
+      <div class="menu-item" data-name="Brownie with Ice-cream" data-price="6.99">
+        <img src="br.png" alt="Brownie with Ice-cream">
+      </div>
+      <div class="menu-item" data-name="Ice-Cream" data-price="8.99">
+        <img src="ic.png" alt="Ice-Cream">
+      </div>
+    </div>
+
+    <div id="drinks" class="menu-section">
+      <h2 style="font-family: 'Lobster'">Drinks</h2>
+      <div class="menu-item" data-name="Moca" data-price="2.99">
+        <img src="moc.png" alt="Moca">
+      </div>
+      <div class="menu-item" data-name="Blue Moca" data-price="3.99">
+        <img src="moc.png" alt="Blue Moca">
+      </div>
+    </div>
+
+    <!-- Cart -->
+    <div id="cart">
+      <h2 style="font-family: 'Lobster'">Shopping Cart</h2>
+      <ul id="cart-items"></ul>
+      <p style="font-family: 'Lobster'">Total: $<span id="total-price">0.00</span></p>
+    </div>
+  </div>
+<br/>
+  <footer>
+    <p style="font-family: 'Lobster'">&copy; 2023 Voom Restaurant. All rights reserved.</p>
+  </footer>
+
+  <!-- Bootstrap JS and Popper.js -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    function showMenu(section) {
+      // Hide all menu sections
+      $(".menu-section").hide();
+      
+      // Show the selected menu section
+      $("#" + section).show();
+    }
+
+    $(document).ready(function () {
+      $(".menu-item").each(function () {
+        // Create a dropdown for each menu item
+        var itemName = $(this).data("name");
+        var itemPrice = $(this).data("price");
+        var dropdown = '<select class="custom-select"><option value="0">0</option>';
+        for (var i = 1; i <= 10; i++) {
+          dropdown += '<option value="' + i + '">' + i + '</option>';
+        }
+        dropdown += '</select>';
+
+        // Append the menu item and dropdown to the corresponding menu section
+        $(this).append('<div class="d-flex justify-content-between align-items-center">' +
+          '<span>' + itemName + ' - $' + itemPrice + '</span>' +
+          dropdown + '</div>');
+
+        // Add click event to update the cart
+        $("select", this).change(updateCart);
+      });
+    });
+
+    function updateCart() {
+      var totalPrice = 0;
+      var cartItems = [];
+
+      $(".menu-item select").each(function () {
+        var quantity = $(this).val();
+        var itemName = $(this).closest(".menu-item").data("name");
+        var itemPrice = $(this).closest(".menu-item").data("price");
+
+        if (quantity > 0) {
+          totalPrice += quantity * itemPrice;
+          cartItems.push(quantity + "x " + itemName);
+        }
+      });
+
+      // Update cart display
+      $("#cart-items").html("");
+      cartItems.forEach(function (item) {
+        $("#cart-items").append("<li>" + item + "</li>");
+      });
+
+      $("#total-price").text(totalPrice.toFixed(2));
+    }
+  </script>
+
+</body>
+
+</html>
